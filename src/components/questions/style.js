@@ -16,6 +16,12 @@ export const OptionContainer = styled.section`
   margin-bottom: 24px;
 `
 
+export const Timer = styled.section`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+`
+
 export const ButtonContainer = styled.section`
   display: flex;
   align-items: center;

@@ -38,3 +38,4 @@ export const Questions = [
 ]
 
 export const Result_status = ['Wrong', 'Right', 'Not Answered']
+export const TIME_IN_SECOND = 20

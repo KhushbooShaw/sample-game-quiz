@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {
     Container,
     Button,
     ButtonContainer,
     OptionContainer,
-    Input
+    Input,
+    Timer
 } from './style'
+import { TIME_IN_SECOND } from '../homepage/constant'
 
 const Questions = (props) => {
   const {
@@ -17,6 +19,21 @@ const Questions = (props) => {
   } = props
   const [disabled, setDisabled] = useState(true)
   const [selected, setSelected] = useState()
+  const [seconds, setSeconds ] =  useState(TIME_IN_SECOND);
+  useEffect(()=>{
+    let myInterval = setInterval(() => {
+            if (seconds > 0) {
+                setSeconds(seconds - 1);
+            }
+            if (seconds === 0) {
+              onSkipClick()
+              clearInterval(myInterval)
+            } 
+        }, 1000)
+        return ()=> {
+            clearInterval(myInterval);
+          };
+  });
 
   const handleChange = (e) => {
     setDisabled(false)
@@ -25,16 +42,19 @@ const Questions = (props) => {
   const handleClick = () => {
     setDisabled(true)
     setSelected(null)
+    setSeconds(TIME_IN_SECOND)
     handleSubmit( selected, question, questionNumber)
   }
   const onSkipClick = () => {
     setDisabled(true)
     setSelected(null)
+    setSeconds(TIME_IN_SECOND)
     handleSkip(question, questionNumber)
   }
 
   return (
    <Container>
+       <Timer><span>{'00:'+ (seconds < 10 ? '0'+ seconds : seconds)}</span></Timer>
        <p>{(questionNumber+1) + '. ' + question?.question}</p>
        <OptionContainer>
         <section>
