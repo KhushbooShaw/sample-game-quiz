@@ -31,8 +31,8 @@ table {
     background: #eee; 
   }
   th { 
-    background: #333; 
-    color: palevioletred; 
+    background: palevioletred; 
+    color: white; 
     font-weight: bold; 
   }
   td, th { 
